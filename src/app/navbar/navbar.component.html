@@ -1,0 +1,50 @@
+<body>
+  <nav class="fixed-navbar">
+    <div class="navbar-left">
+      <ul>
+        <li><a routerLink="/inicio">CATOTALK</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-middle">
+      <div>
+        <div class="imagendiv">
+          <ng-container *ngIf="authService.getUserImage() as fotoPerfil; else elseDefaultImage">
+            <img [src]="'data:image/jpeg;base64,' + fotoPerfil" alt="Descripción de la imagen">
+          </ng-container>
+          <ng-template #elseDefaultImage>
+            <img class="imagenperfil" src="assets/user3.png" alt="Foto de perfil Default">
+          </ng-template>
+        </div>
+      </div>
+      <div class="inputdiv">
+        <div class="form-wrapper">
+          <form [formGroup]="nuevoPost" (ngSubmit)="newPost()" class="formnav">
+            <input class="inputtext" formControlName="description" type="text" required placeholder=" ¿Qué tienes en mente {{ authService.getUserName() }}?"> <!-- input para escribir una publicación -->
+          </form>
+        </div>
+        <div *ngIf="authService.isLogged()" class="inputfilediv">
+          <label for="inputFile" id="inputFilelabel">
+            <img class="inputicon" src="assets/imagenicon.png" alt="Input icon">
+            <input type="file" (change)="handleFileInput($event)" id="inputFile">
+          </label>
+        </div>
+      </div>
+      
+      <div *ngIf="authService.isLogged()">
+        <button (click)="newPost()" id="botonenviar"><img class="sendicon" src="assets/sendicon.png" alt="Send"></button>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <ul>
+        <ng-container *ngIf="!authService.isLogged(); else elseBlock">
+          <li><a routerLink="/signin">Iniciar Sesión</a></li>
+          <li><a routerLink="/signup">Registrarse</a></li>
+        </ng-container>
+        <ng-template #elseBlock>
+          <li><a class="cerrar" (click)="logout()">Cerrar Sesión</a></li>
+        </ng-template>
+      </ul>
+    </div>
+  </nav>
+</body>

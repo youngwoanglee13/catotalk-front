@@ -1,0 +1,38 @@
+<body>
+  <div class="container">
+    <div class="form">
+      <header>Bienvenido {{user.get('name')?.value}}</header>
+      <form [formGroup]="user" (ngSubmit)="signup()" >
+        <div *ngIf="user.controls.name.errors && user.controls.name.touched">
+          <p *ngIf="user.controls.name.errors['required']">Introduzca un nombre.</p>
+        </div>
+        <input type="text" id="name" formControlName="name" placeholder="Nombre">
+
+        <div *ngIf="user.controls.email.errors && user.controls.email.touched">
+          <p *ngIf="user.controls.email.errors['required']">Introduzca un email.</p>
+          <p *ngIf="user.controls.email.errors['email']">Introduzca un email valido.</p>
+        </div>
+        <input type="email" id="email" formControlName="email" placeholder="Correo electronico"> 
+
+        <div *ngIf="user.controls.password.errors && user.controls.password.touched">
+          <p *ngIf="user.controls.password.errors['required']">Introduzca una Contraseña.</p>
+        </div>
+        <input type="password" id="password" formControlName="password" placeholder="Contraseña">
+
+        <label for="inputFile">Foto de perfil (opcional)</label>
+        <input type="file" (change)="handleFileInput($event)" id="inputFile">
+        <input type="button" class="button" value="Registrarse" (click)="signup()">
+      </form>
+      <div class="opcion">
+        <span class="opcion">Ya tienes una cuenta?
+         <label for="check" (click)="goToSignIn()">Inicia sesion</label>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+
+

@@ -1,0 +1,26 @@
+<body>
+  <div class="container">
+    <div class="form">
+      <header>CATOTALK</header>
+      <form [formGroup]="user" (ngSubmit)="signin()">
+        <div *ngIf="user.controls.email.errors && user.controls.email.touched">
+          <p *ngIf="user.controls.email.errors['required']">Introduzca un email.</p>
+          <p *ngIf="user.controls.email.errors['email']">Introduzca un email válido.</p>
+        </div>
+        <input type="email" id="email" formControlName="email" placeholder="Correo electrónico">
+
+        <div *ngIf="user.controls.password.errors && user.controls.password.touched">
+          <p *ngIf="user.controls.password.errors['required']">Introduzca una contraseña.</p>
+        </div>
+        <input type="password" id="password" formControlName="password" placeholder="Contraseña">
+
+        <input type="button" class="button" value="Iniciar sesión" (click)="signin()">
+      </form>
+      <div class="opcion">
+        <span class="opcion">¿No tienes una cuenta?
+          <label for="check" (click)="goToSignup()">Regístrate</label>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>

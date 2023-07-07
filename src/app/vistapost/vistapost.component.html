@@ -1,0 +1,39 @@
+
+<app-navbar></app-navbar>
+
+<body>  
+  <div *ngIf="newPostService.listaPost.length > 0; else elseBlock" class="post-list" >
+    <div class="post-container">
+      <div class="column">
+        <ul>
+          <li *ngFor="let post of newPostService.listaPost.slice().reverse()" class="post-item">
+            <div class="post-header">
+              <span class="spanotrosperfil">
+                <img [src]="'data:image/jpeg;base64,' + post.userinfo.image" alt="perfil posteador" class="otrosperfil">
+              </span>
+              <span class="username">{{ post.userinfo.name }}</span>
+              <span class="date">{{ post.date }}</span>
+            </div>
+            <div class="div-descripcion">
+              <ng-container *ngIf="post.image">
+                <img [src]="'data:image/jpeg;base64,' + post.image" alt="imagen del post" class="postimage">
+              </ng-container>
+              <p class="post-description">{{ post.description }}</p>
+            </div>
+            <div class="divboton">
+              <button class="btn comment-button" (click)="openPopup(post.id)">Comentar</button>
+            </div>
+            <div class="popup-container" *ngIf="isPopupOpen">
+              <button class="close-button" (click)="closePopup()">Cerrar</button>
+              <app-review [selectedPost]="selectedPost"></app-review>
+            </div>
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ng-template #elseBlock >
+    <P class="cargando">Cargando...</P>
+  </ng-template> 
+</body>

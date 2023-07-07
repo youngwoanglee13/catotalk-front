@@ -1,0 +1,22 @@
+<div class="container">
+    <form (ngSubmit)="comment($event)">
+      <div class="comment">
+        <span> @{{ selectedPost.userinfo.name }}</span>
+        <span>{{selectedPost.date}}</span>
+      </div>
+      <ng-container *ngIf="selectedPost.image">
+        <img [src]="'data:image/jpeg;base64,' + selectedPost.image" alt="imagen del post" class="postimage">
+      </ng-container>
+      <p class="description">{{selectedPost.description}}</p>
+      <p style="display: none;">{{ selectedPost.id }}</p>
+      <input type="text" id="idcomentar" [(ngModel)]="newComment" name="comentar" required placeholder="¿Opinamos algo?">
+      <button type="submit" [disabled]="!newComment">Comentar</button>
+    </form>
+  
+    <div id="divcomment">
+      <div *ngFor="let review of selectedPost.reviews" class="comment">
+        <span class="nombre">@{{review.userName}}:</span>
+        <span>{{review.comment}}</span>
+      </div>
+    </div>
+  </div>

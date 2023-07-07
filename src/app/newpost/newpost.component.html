@@ -1,0 +1,7 @@
+<form (ngSubmit)="newPost()">
+    <div class="form-container">
+        <label class="" for="email">Nuevo post:</label>
+        <input type="text" id="description" [(ngModel)]="post.description" name="description" required placeholder="¿Que tienes en mente?">
+        <button type="submit" class="btn btn-primary" >Publicar</button>
+    </div>
+    </form>
