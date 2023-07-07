@@ -12,9 +12,9 @@ export class NewPostService {
   listaPost: PostDTO[] = [];
   constructor(private http:HttpClient) { }
   
-  newPost(id:any): Observable<PostDTO[]>{
-    const headers = new HttpHeaders({ 'ngrok-skip-browser-warning': 'true' });
-    return this.http.post<PostDTO[]>(this.url + '/post', id, { headers }).pipe(
+  newPost(newpost:any): Observable<PostDTO[]>{
+   
+    return this.http.post<PostDTO[]>(this.url + '/post', newpost).pipe(
       tap(response => {
         this.listaPost = this.listaPost.concat(response);
       console.log(this.listaPost);})

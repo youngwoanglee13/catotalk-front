@@ -23,7 +23,8 @@ export class ReviewComponent {
         review: {
           comment: this.newComment 
         },
-      idPost: this.selectedPost.id
+      idPost: this.selectedPost.id,
+      userId: localStorage.getItem('id')
     }
     this.reviewService.newReview(payload).subscribe((res)=>{this.selectedPost.reviews.push(res); })
     }

@@ -66,6 +66,7 @@ export class NavbarComponent {
     post.append('description', this.nuevoPost.value.description || '') ;
     post.append('date', this.nuevoPost.value.date);
     post.append('file', this.formData.get('file') || '');
+    post.append('id', localStorage.getItem('id') || '');
     this.newPostService.newPost(post).subscribe((res)=>{console.log(res);this.nuevoPost.reset();})
   }
 }

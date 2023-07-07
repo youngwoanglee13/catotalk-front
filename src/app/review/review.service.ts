@@ -11,8 +11,7 @@ export class ReviewService {
   url = localStorage.getItem('urlback');
   constructor(private http:HttpClient, private router:Router) { }
   newReview(payload:any): Observable<ReviewDTO[]>{
-    const headers = new HttpHeaders({'ngrok-skip-browser-warning': 'true'});
-    return this.http.post<ReviewDTO[]>(this.url+'/review',payload,{headers});
+    return this.http.post<ReviewDTO[]>(this.url+'/review',payload);
   }
   getReviewsByIdPost(id:any): Observable<ReviewDTO[]>{
     const headers = new HttpHeaders({'ngrok-skip-browser-warning': 'true'});

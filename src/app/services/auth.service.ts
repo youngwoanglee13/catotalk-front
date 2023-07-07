@@ -23,6 +23,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('image');
+    localStorage.removeItem('id');
   }
   getUserName(): string {
     return localStorage.getItem('username') ?? ''; // Devuelve una cadena vacía si el valor es null

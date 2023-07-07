@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'front';
 
   ngOnInit(): void {
-    localStorage.setItem('urlback', 'https://catotalk-back.onrender.com');
+    localStorage.setItem('urlback', 'http://localhost:3000');
   }
 }

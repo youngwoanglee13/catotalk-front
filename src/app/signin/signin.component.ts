@@ -21,6 +21,7 @@ export class SignInComponent {
       localStorage.setItem('token',res.token);
       localStorage.setItem('username',res.name);
       localStorage.setItem('image',res.image);
+      localStorage.setItem('id',res.id);
       console.log(res.name);
       this.goToIncio();
     },
